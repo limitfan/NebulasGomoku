@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>NebulasGomoku五子棋</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="./lib/jquery-weui/lib/weui.min.css">
+    <link rel="stylesheet" href="./lib/jquery-weui/css/jquery-weui.css">
+    <link rel="stylesheet" href="./dist/main.css">
+  </head>
+  <body ontouchstart>
+     <h1>NebulasGomoku五子棋</h1>
+    <div class="board-outer">
+      <div class="board" id="board">
+      </div>
+    </div>
+
+    <div class="status">
+    </div>
+
+    <div class="buttons">
+      <div class="weui-row">
+        <div class="weui-col-33">
+          <a href="javascript:;" class="weui_btn weui_btn_primary" id='start'>开始</a>
+        </div>
+        <div class="weui-col-33">
+          <a href="javascript:;" class="weui_btn weui_btn_warn" id='fail'>认输</a>
+        </div>
+        <div class="weui-col-33">
+          <a href="javascript:;" class="weui_btn weui_btn_default" id='back'>悔棋</a>
+        </div>
+        
+      </div>
+      <div class="weui-row">
+        <div class="weui-col-50" id="ranklist" style="margin-top:25px">
+         <a href="javascript:;" class="weui_btn weui_btn_plain_default">排行榜</a>
+        </div>
+       
+         <div class="weui-col-50" id="status" style="margin-top:25px">
+         <a href="javascript:;" class="weui_btn weui_btn_plain_default">运行状态</a>
+        </div>
+      </div>
+    </div>
+
+   <div class='wrap'>
+   <div class='content'>
+   <div class='title'>
+   <div id='mytitle' style=''>
+   <h2 align="center" id="poptitle">Nebulas五子棋排行榜</h2>
+   </div>
+   <div id='close' style='float:right'>
+        <i class="weui_icon_cancel"></i>   
+   </div>
+   </div>
+
+    <div class='scrollcontent' id='scrollable-content'>
+           <div class="container">
+	<div class="leaderboard">
+		<div class="leaderboard--header">
+			<div class="leaderboard--item">
+				<div class="leaderboard--item--cell leaderboard--item--cell__rank">
+					<span>Rank</span>
+				</div>
+				<div class="leaderboard--item--cell leaderboard--item--cell__user">
+					<span>User</span>
+				</div>
+				<div class="leaderboard--item--cell leaderboard--item--cell__thirty">
+					<span>Time</span>
+				</div>
+				<div class="leaderboard--item--cell leaderboard--item--cell__alltime">
+					<span>Replay</span>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+</div>   
+
+    </div>
+    </div>
+   </div>
+    
+    <img src="data:image/png;base64,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" width="160">     
+    <p>本DApp运行于星云链，请安装相应平台钱包:<a href="https://github.com/ChengOrangeJu/WebExtensionWallet">WebExtensionWallet</a>,<a href="https://nano.nebulas.io/index_cn.html">Android</a>,<a href="https://itunes.apple.com/hk/app/nas-nano/id1281191905?l=zh&ls=1&mt=8">iOS</a></p>
+    <script src='./lib/jquery-weui/lib/jquery-2.1.4.js'></script>
+    <script src='./lib/jquery-weui/js/jquery-weui.js'></script>
+    <script src='./lib/nebPay.js'></script>
+    <script src='./lib/nebulas.js'></script>
+    <script src='./dist/main.js'></script>
+
+  </body>
+</html>

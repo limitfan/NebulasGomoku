@@ -1,0 +1,31 @@
+{
+  "name": "gobang",
+  "version": "1.0.0",
+  "description": "",
+  "main": "evaluate.js",
+  "watch": {
+    "less": "less/main.less",
+    "js": "js/*.js"
+  },
+  "scripts": {
+    "less": "lessc less/main.less > dist/main.css",
+    "js": "browserify js/main.js > dist/main.js && browserify js/bridge.js > dist/bridge.js",
+    "watch": "npm-watch",
+    "test": "mocha tests/*.js",
+    "test-gen": "mocha tests/test-gen.js",
+    "test-evaluate": "mocha tests/test-evaluate.js",
+    "test-evaluate-row": "mocha tests/test-evaluate-row.js",
+    "test-checkmate": "mocha tests/test-checkmate.js",
+    "test-m": "mocha tests/test-max-min.js",
+    "test-evaluate-point": "mocha tests/test-evaluate-point.js"
+  },
+  "author": "Hongxun Lee <lihongxun945@gmail.com> (http://light7.org/)",
+  "homepage": "http://gobang.light7.cn/",
+  "license": "MIT",
+  "devDependencies": {
+    "browserify": "^13.0.0",
+    "less": "^2.6.0",
+    "mocha": "^2.4.5",
+    "npm-watch": "^0.1.1"
+  }
+}
